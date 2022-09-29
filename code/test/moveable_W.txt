@@ -1,0 +1,18 @@
+// 加在Object的public內：
+
+int get_X() {return Obj_pos.get_pos().x;}
+int get_Y() {return Obj_pos.get_pos().y;}
+
+
+
+
+bool Object::MOVEABLE_W(){
+    int yourState = grid[this->get_X()][this->get_Y() - 1].Determine_State();
+    if(yourState == 0)
+        return 1;
+    else if(yourState == 2)
+        return 0;
+    else if(yourState == 1 or yourState == 3){  // push
+        return grid[this->get_X()][this->get_Y() - 1].MOVEABLE_W();
+    }
+}
